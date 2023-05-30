@@ -1,0 +1,14 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h1>Blog con PHP y PHP-DI utilizando twig</h1>
+    <h5>Detalle de articulo</h5>
+
+    <div class="content">
+        <b>ID:</b> {{ article.getId() }} <br>
+        <b>Title:</b> {{ article.getTitle() }} <br>
+        <b>Content:</b> {{ article.getContent() }}
+    </div>
+
+
+{% endblock %}

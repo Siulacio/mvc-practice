@@ -1,0 +1,16 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h1>Blog con PHP y PHP-DI utilizando twig</h1>
+    <h5>Lista de articulos</h5>
+    <ul class="collection">
+        {% for article in articles %}
+            <li class="collection-item avatar">
+                <i class="mdi-insert-comment circle"></i>
+                <span class="title">{{ article.getTitle() }}</span>
+                <p>{{ article.getContent() }}</p>
+                <a href="/articulo/{{ article.getId() }}">Leer más</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

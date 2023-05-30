@@ -3,6 +3,7 @@
 namespace Blog\Controllers;
 
 use Blog\Interfaces\IArticle;
+use Blog\Models\Article;
 use Twig\Environment;
 
 class HomeController
@@ -12,7 +13,8 @@ class HomeController
 
     public function __construct(IArticle $articleRepository, Environment $twig)
     {
-        //
+        $this->articleRepository = $articleRepository;
+        $this->twig = $twig;
     }
 
     public function index()
@@ -21,8 +23,17 @@ class HomeController
 
     }
 
-    public function hola(string $nombre)
+    public function articulos()
     {
-        echo "Hola {$nombre}";
+        echo $this->twig->render('home.twig', [
+            'articles' => $this->articleRepository->getArticles(),
+        ]);
+    }
+
+    public function articulo(int $id)
+    {
+        echo $this->twig->render('article.twig', [
+            'article' => $this->articleRepository->getArticle($id),
+        ]);
     }
 }
