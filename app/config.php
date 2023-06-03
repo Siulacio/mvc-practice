@@ -1,10 +1,12 @@
 <?php
 
+use Application\Services\Doctrine;
 use Blog\Interfaces\IArticle;
 use Blog\Persistences\InMemoryArticle;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use function DI\create;
+use function DI\get;
 
 return [
     IArticle::class => create(InMemoryArticle::class),
@@ -12,5 +14,15 @@ return [
         $loader = new FilesystemLoader(__DIR__ . "/../src/Blog/Views");
         return new Environment($loader);
     },
-
+    Doctrine::class => create(Doctrine::class)
+        ->constructor(get('db.connectionOptions')),
+    'db.connectionOptions' => [
+        'driver' => 'pdo_mysql',
+        'host' => 'localhost',
+        'user' => 'root',
+        'password' => '1234',
+        'port' => 3306,
+        'db_name' => 'doctrinedb',
+        'unix_socket' => '/var/run/mysqld/mysqld.sock',
+    ]
 ];
