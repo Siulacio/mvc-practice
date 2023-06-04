@@ -96,9 +96,9 @@ class User
     }
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getPosts(): ArrayCollection
+    public function getPosts(): Collection
     {
         return $this->posts;
     }
