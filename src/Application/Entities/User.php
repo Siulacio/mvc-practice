@@ -2,7 +2,8 @@
 
 namespace Application\Entities;
 
-use Doctrine\ORM\Mapping\{Column, Entity, GeneratedValue, Id, Table};
+use Doctrine\ORM\Mapping\{Column, Entity, GeneratedValue, Id, OneToMany, Table};
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @Entity(repositoryClass="Application\Repositories\UserRepository")
@@ -40,6 +41,12 @@ class User
      * @var \DateTime
      */
     protected \DateTime $created;
+
+    /**
+     * @OneToMany(targetEntity="Post", mappedBy="user", cascade={"persist", "remove"})
+     * @var array
+     */
+    protected array $posts;
 
     public function __construct()
     {
@@ -84,6 +91,14 @@ class User
     public function getCreated(): \DateTime
     {
         return $this->created;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPosts(): array
+    {
+        return $this->posts;
     }
 
 }
