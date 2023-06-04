@@ -3,7 +3,8 @@
 namespace Application\Entities;
 
 use Doctrine\ORM\Mapping\{Column, Entity, GeneratedValue, Id, OneToMany, Table};
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @Entity(repositoryClass="Application\Repositories\UserRepository")
@@ -44,13 +45,14 @@ class User
 
     /**
      * @OneToMany(targetEntity="Post", mappedBy="user", cascade={"persist", "remove"})
-     * @var array
+     * @var Collection
      */
-    protected array $posts;
+    protected Collection $posts;
 
     public function __construct()
     {
         $this->created = new \DateTime('now');
+        $this->posts = new ArrayCollection;
     }
 
     public function getId(): int
@@ -94,9 +96,9 @@ class User
     }
 
     /**
-     * @return array
+     * @return ArrayCollection
      */
-    public function getPosts(): array
+    public function getPosts(): ArrayCollection
     {
         return $this->posts;
     }

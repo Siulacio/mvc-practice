@@ -2,6 +2,7 @@
 
 namespace Application\Controllers;
 
+use Application\Entities\Post;
 use Application\Entities\User;
 use Application\Services\Doctrine;
 
@@ -87,6 +88,26 @@ class HomeController
             echo $this->formatUser($user);
         } else {
             echo "El usuario con username {$username} no existe";
+        }
+    }
+
+    public function insertPost(Doctrine $doctrine, int $user_id)
+    {
+        try {
+            $user = $doctrine->em->find(User::class, $user_id);
+            var_dump($user_id);
+
+            $post = new Post;
+            $post->setUser($user);
+            $post->setTitle('Nuevo post 1');
+            $post->setBody('Contenido del post 1');
+
+            $doctrine->em->persist($post);
+            $doctrine->em->flush();
+
+            echo "Nuevo post vinculado al usuario con id {$user_id}";
+        } catch (\Exception $exception) {
+            echo $exception->getMessage();
         }
     }
 

@@ -49,7 +49,7 @@ class Post
 
     public function __construct()
     {
-        $this->created = new \DateTime('nom');
+        $this->created = new \DateTime('now');
     }
 
     /**
@@ -92,9 +92,6 @@ class Post
         $this->body = $body;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getCreated(): \DateTime
     {
         return $this->created;
