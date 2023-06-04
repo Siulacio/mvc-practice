@@ -11,7 +11,7 @@ use function DI\get;
 return [
     IArticle::class => create(InMemoryArticle::class),
     Environment::class => function () {
-        $loader = new FilesystemLoader(__DIR__ . "/../src/Blog/Views");
+        $loader = new FilesystemLoader([__DIR__ . "/../src/Blog/Views", __DIR__ . "/../src/Application/Views"]);
         return new Environment($loader);
     },
     Doctrine::class => create(Doctrine::class)

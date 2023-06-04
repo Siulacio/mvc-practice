@@ -20,6 +20,9 @@ $dispatcher = FastRoute\simpleDispatcher(
         $router->addRoute('GET', '/insert-post/{user_id}', ['Application\Controllers\HomeController', 'insertPost']);
         $router->addRoute('GET', '/find-user-with-posts/{user_id}', ['Application\Controllers\HomeController', 'findUserWithPosts']);
 
+        $router->addRoute(['GET', 'POST'], '/login', ['Application\Controllers\AuthController', 'login']);
+        $router->addRoute(['GET', 'POST'], '/registro', ['Application\Controllers\AuthController', 'registro']);
+
 //        $router->addRoute('GET', '/', ['Blog\Controllers\HomeController', 'index']);
 //        $router->addRoute('GET', '/articulos', ['Blog\Controllers\HomeController', 'articulos']);
 //        $router->addRoute('GET', '/articulo/{id}', ['Blog\Controllers\HomeController', 'articulo']);
