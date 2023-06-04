@@ -11,6 +11,7 @@ $dispatcher = FastRoute\simpleDispatcher(
     function (RouteCollector $router)
     {
         $router->addRoute('GET', '/', ['Application\Controllers\HomeController', 'index']);
+        $router->addRoute('GET', '/insert', ['Application\Controllers\HomeController', 'insert']);
 //        $router->addRoute('GET', '/', ['Blog\Controllers\HomeController', 'index']);
 //        $router->addRoute('GET', '/articulos', ['Blog\Controllers\HomeController', 'articulos']);
 //        $router->addRoute('GET', '/articulo/{id}', ['Blog\Controllers\HomeController', 'articulo']);
