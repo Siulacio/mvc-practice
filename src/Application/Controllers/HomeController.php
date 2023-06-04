@@ -111,6 +111,28 @@ class HomeController
         }
     }
 
+    public function findUserWithPosts(Doctrine $doctrine, int $user_id)
+    {
+        $user = $doctrine->em->find(User::class, $user_id);
+
+        if ($user) {
+            echo $this->formatUser($user);
+
+            foreach ($user->getPosts() as $post) {
+                echo sprintf(
+                    "%d, %s, %s, %s <br />",
+                    $post->getId(),
+                    $post->getTitle(),
+                    $post->getBody(),
+                    $post->getCreated()->format('d/m/Y H:i:s'),
+                );
+            }
+
+        } else {
+
+        }
+    }
+
     protected function formatUser(User $user): string
     {
         return sprintf(
