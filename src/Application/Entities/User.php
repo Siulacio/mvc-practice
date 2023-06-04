@@ -81,7 +81,7 @@ class User
         $this->email = $email;
     }
 
-    public function getCreated(): string
+    public function getCreated(): \DateTime
     {
         return $this->created;
     }
