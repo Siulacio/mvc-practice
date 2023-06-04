@@ -8,6 +8,8 @@
             <h1 class="text-center text-muted mt-5">Crear una cuenta</h1>
             <hr />
 
+            {% include 'form_errors.twig' %}
+
             <form method="post" name="procesar_registro" id="signup">
                 <div class="form-group">
                     <label for="email">Correo electrónico</label>
