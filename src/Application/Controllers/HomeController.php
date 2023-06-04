@@ -12,7 +12,7 @@ class HomeController
         var_dump($doctrine);
     }
 
-    public function insert(Doctrine $doctrine)
+    public function insert(Doctrine $doctrine): void
     {
         try {
 
@@ -32,7 +32,7 @@ class HomeController
 
     }
 
-    public function all(Doctrine $doctrine)
+    public function all(Doctrine $doctrine): void
     {
         $users = $doctrine->em->getRepository('Application\Entities\User')->findAll();
 
@@ -41,7 +41,7 @@ class HomeController
         }
     }
 
-    public function findOne(Doctrine $doctrine, int $id)
+    public function findOne(Doctrine $doctrine, int $id): void
     {
         $user = $doctrine->em->find(User::class, $id);
 
@@ -52,7 +52,7 @@ class HomeController
         }
     }
 
-    public function update(Doctrine $doctrine, int $id)
+    public function update(Doctrine $doctrine, int $id): void
     {
         $user = $doctrine->em->find(User::class, $id);
         $user->setUsername("test@example.com");
@@ -61,6 +61,20 @@ class HomeController
         $doctrine->em->flush();
 
         echo "Se ha actualizado el Usuario con id {$user->getId()} en base de datos!";
+    }
+
+    public function remove(Doctrine $doctrine, int $id): void
+    {
+        $user = $doctrine->em->find(User::class, $id);
+
+        if (!$user) {
+            echo "El usuario con id {$id} no existe";
+            exit;
+        }
+
+        $doctrine->em->remove($user);
+        $doctrine->em->flush();
+        echo "El usuario con id {$id} ha sido eliminado de base de datos";
     }
 
     protected function formatUser(User $user): string
