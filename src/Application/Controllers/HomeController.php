@@ -52,6 +52,17 @@ class HomeController
         }
     }
 
+    public function update(Doctrine $doctrine, int $id)
+    {
+        $user = $doctrine->em->find(User::class, $id);
+        $user->setUsername("test@example.com");
+
+        $doctrine->em->persist($user);
+        $doctrine->em->flush();
+
+        echo "Se ha actualizado el Usuario con id {$user->getId()} en base de datos!";
+    }
+
     protected function formatUser(User $user): string
     {
         return sprintf(
@@ -63,5 +74,4 @@ class HomeController
             $user->getCreated()->format("d/m/Y H:i:s")
         );
     }
-    
 }
