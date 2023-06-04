@@ -37,9 +37,9 @@ class User
 
     /**
      * @Column(type="datetime")
-     * @var string
+     * @var \DateTime
      */
-    protected string $created;
+    protected \DateTime $created;
 
     public function __construct()
     {
