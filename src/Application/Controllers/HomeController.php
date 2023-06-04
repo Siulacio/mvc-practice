@@ -37,14 +37,31 @@ class HomeController
         $users = $doctrine->em->getRepository('Application\Entities\User')->findAll();
 
         foreach ($users as $user) {
-            echo sprintf("%d, %s, %s, %s, %s <br />",
-                $user->getId(),
-                $user->getUsername(),
-                $user->getPassword(),
-                $user->getEmail(),
-                $user->getCreated()->format("d/m/Y H:i:s")
-            );
+            echo $this->formatUser($user);
         }
+    }
+
+    public function findOne(Doctrine $doctrine, int $id)
+    {
+        $user = $doctrine->em->find(User::class, $id);
+
+        if ($user) {
+            echo $this->formatUser($user);
+        } else {
+            echo "El usuario con id {$id} no existe";
+        }
+    }
+
+    protected function formatUser(User $user): string
+    {
+        return sprintf(
+            "%d, %s, %s, %s, %s <br />",
+            $user->getId(),
+            $user->getUsername(),
+            $user->getPassword(),
+            $user->getEmail(),
+            $user->getCreated()->format("d/m/Y H:i:s")
+        );
     }
     
 }
