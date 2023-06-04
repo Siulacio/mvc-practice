@@ -5,7 +5,7 @@ namespace Application\Entities;
 use Doctrine\ORM\Mapping\{Column, Entity, GeneratedValue, Id, Table};
 
 /**
- * @Entity
+ * @Entity(repositoryClass="Application\Repositories\UserRepository")
  * @Table(name="users")
  */
 class User
