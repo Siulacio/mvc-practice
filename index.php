@@ -16,6 +16,7 @@ $dispatcher = FastRoute\simpleDispatcher(
         $router->addRoute('GET', '/find/{id}', ['Application\Controllers\HomeController', 'findOne']);
         $router->addRoute('GET', '/update/{id}', ['Application\Controllers\HomeController', 'update']);
         $router->addRoute('GET', '/remove/{id}', ['Application\Controllers\HomeController', 'remove']);
+        $router->addRoute('GET', '/find-by-username/{username}', ['Application\Controllers\HomeController', 'findByUsername']);
 //        $router->addRoute('GET', '/', ['Blog\Controllers\HomeController', 'index']);
 //        $router->addRoute('GET', '/articulos', ['Blog\Controllers\HomeController', 'articulos']);
 //        $router->addRoute('GET', '/articulo/{id}', ['Blog\Controllers\HomeController', 'articulo']);

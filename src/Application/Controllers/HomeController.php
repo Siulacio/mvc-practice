@@ -77,6 +77,19 @@ class HomeController
         echo "El usuario con id {$id} ha sido eliminado de base de datos";
     }
 
+    public function findByUsername(Doctrine $doctrine, string $username)
+    {
+        $user = $doctrine->em
+            ->getRepository(User::class)
+            ->getUserByUsername($username);
+
+        if ($user) {
+            echo $this->formatUser($user);
+        } else {
+            echo "El usuario con username {$username} no existe";
+        }
+    }
+
     protected function formatUser(User $user): string
     {
         return sprintf(
