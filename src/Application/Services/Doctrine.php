@@ -12,7 +12,7 @@ class Doctrine
     public function __construct(array $connectionOptions)
     {
         $paths = [
-            rtrim(__DIR__ . '/../Models'),
+            rtrim(__DIR__ . '/../Repositories'),
             rtrim(__DIR__ . '/../Entities'),
         ];
 
