@@ -31,5 +31,20 @@ class HomeController
         }
 
     }
+
+    public function all(Doctrine $doctrine)
+    {
+        $users = $doctrine->em->getRepository('Application\Entities\User')->findAll();
+
+        foreach ($users as $user) {
+            echo sprintf("%d, %s, %s, %s, %s <br />",
+                $user->getId(),
+                $user->getUsername(),
+                $user->getPassword(),
+                $user->getEmail(),
+                $user->getCreated()->format("d/m/Y H:i:s")
+            );
+        }
+    }
     
 }
