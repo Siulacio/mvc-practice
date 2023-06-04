@@ -22,7 +22,7 @@ return [
         'user' => 'root',
         'password' => '1234',
         'port' => 3306,
-        'db_name' => 'doctrinedb',
+        'dbname' => 'doctrinedb',
         'unix_socket' => '/var/run/mysqld/mysqld.sock',
     ]
 ];
