@@ -9,8 +9,7 @@ class DashboardController
     public function __construct()
     {
         if (!isset($_SESSION['user_id'])) {
-            $url = sprintf('%s/%s', BASE_URL, 'registro');
-            header("Location: {$url}");
+            redirect('registro');
             exit;
         }
     }
@@ -27,8 +26,7 @@ class DashboardController
         if (isset($_POST['submit'])) {
             session_destroy();
 
-            $url = sprintf('%s/%s', BASE_URL, 'login');
-            header("Location: {$url}");
+            redirect('login');
             exit;
         }
 

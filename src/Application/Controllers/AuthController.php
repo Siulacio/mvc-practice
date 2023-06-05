@@ -55,8 +55,7 @@ class AuthController
                 $_SESSION["username"] = $username;
                 $_SESSION["email"] = $email;
 
-                $url = sprintf('%s/%s', BASE_URL, 'dashboard');
-                header("Location: {$url}");
+                redirect('dashboard');
                 exit;
             }
         }
