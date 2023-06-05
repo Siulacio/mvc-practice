@@ -50,8 +50,15 @@ class AuthController
                 $user->setPassword(password_hash($password, PASSWORD_DEFAULT));
                 $this->doctrine->em->persist($user);
                 $this->doctrine->em->flush();
-            }
 
+                $_SESSION["user_id"] = $user->getId();
+                $_SESSION["username"] = $username;
+                $_SESSION["email"] = $email;
+
+                $url = sprintf('%s/%s', BASE_URL, 'dashboard');
+                header("Location: {$url}");
+                exit;
+            }
         }
         echo $this->twig->render('registro.twig', [
             'errors' => $errors,

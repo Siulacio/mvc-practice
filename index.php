@@ -2,6 +2,10 @@
 
 use FastRoute\RouteCollector;
 
+session_start();
+
+define('BASE_URL', 'http://localhost:5000');
+
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
@@ -10,7 +14,7 @@ $container = require __DIR__ . '/app/bootstrap.php';
 $dispatcher = FastRoute\simpleDispatcher(
     function (RouteCollector $router)
     {
-        $router->addRoute('GET', '/', ['Application\Controllers\HomeController', 'index']);
+        $router->addRoute('GET', '/dashboard', ['Application\Controllers\DashboardController', 'index']);
         $router->addRoute('GET', '/insert', ['Application\Controllers\HomeController', 'insert']);
         $router->addRoute('GET', '/all', ['Application\Controllers\HomeController', 'all']);
         $router->addRoute('GET', '/find/{id}', ['Application\Controllers\HomeController', 'findOne']);

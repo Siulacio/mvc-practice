@@ -1,0 +1,14 @@
+{% extends 'layout.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            {{ dump(session) }}
+        </div>
+        <div class="col-md-12">
+            <a href="http://localhost:5000/logout" class="btn btn-danger btn-block">Cerrar sesión</a>
+        </div>
+    </div>
+{% endblock %}
