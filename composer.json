@@ -9,7 +9,10 @@
         "psr-4": {
             "Blog\\": "src/Blog",
             "Application\\": "src/Application"
-        }
+        },
+        "files": [
+            "src/Application/helper.php"
+        ]
     },
     "config": {
         "allow-plugins": {
