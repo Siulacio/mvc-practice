@@ -7,8 +7,10 @@
         <div class="col-md-12">
             {{ dump(session) }}
         </div>
-        <div class="col-md-12">
-            <a href="http://localhost:5000/logout" class="btn btn-danger btn-block">Cerrar sesión</a>
-        </div>
+        <form method="post" action="/logout">
+            <div class="col-md-12">
+                <button type="submit" name="submit" class="btn btn-danger btn-block">Cerrar sesión</button>
+            </div>
+        </form>
     </div>
 {% endblock %}

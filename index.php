@@ -15,6 +15,8 @@ $dispatcher = FastRoute\simpleDispatcher(
     function (RouteCollector $router)
     {
         $router->addRoute('GET', '/dashboard', ['Application\Controllers\DashboardController', 'index']);
+        $router->addRoute('POST', '/logout', ['Application\Controllers\DashboardController', 'logout']);
+
         $router->addRoute('GET', '/insert', ['Application\Controllers\HomeController', 'insert']);
         $router->addRoute('GET', '/all', ['Application\Controllers\HomeController', 'all']);
         $router->addRoute('GET', '/find/{id}', ['Application\Controllers\HomeController', 'findOne']);
