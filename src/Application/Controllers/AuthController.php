@@ -19,7 +19,40 @@ class AuthController
 
     public function login()
     {
-        echo $this->twig->render('login.twig');
+        $errors = [];
+
+        if (isset($_POST['submit'])) {
+
+            if (empty($_POST['email'])) {
+                $errors[] = 'El correo electrónico es requerido';
+            }
+
+            if (empty($_POST['password'])) {
+                $errors[] = 'La contraseña es requerida';
+            }
+
+            if (empty($errors)) {
+                $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+                $password = filter_input(INPUT_POST, 'password');
+
+                $user = $this->doctrine->em->getRepository(User::class)->findOneBy([
+                   'email' => $email,
+                ]);
+
+                if ($user) {
+                    if (password_verify($password, $user->getPassword())) {
+                        setUserSession($user);
+                        redirect('dashboard');
+                    }
+                }
+
+                $errors[] = 'Las credenciales son incorrectas';
+            }
+        }
+        echo $this->twig->render('login.twig', [
+            'errors' => $errors,
+            'post' => $_POST,
+        ]);
     }
 
     public function registro()
@@ -51,10 +84,7 @@ class AuthController
                 $this->doctrine->em->persist($user);
                 $this->doctrine->em->flush();
 
-                $_SESSION["user_id"] = $user->getId();
-                $_SESSION["username"] = $username;
-                $_SESSION["email"] = $email;
-
+                setUserSession($user);
                 redirect('dashboard');
                 exit;
             }
